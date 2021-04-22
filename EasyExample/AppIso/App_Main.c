@@ -102,6 +102,7 @@ void app_main(void)
 	hw_DebugPrint("app_main_tcp DONE");
 #endif
    /* sample main loop */
+	hw_SimDoSleep(8000);
    while (hw_PowerSwitchIsOn())
    {
       /* run cyclic application function */
