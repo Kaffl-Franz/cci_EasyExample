@@ -12,6 +12,8 @@
 #define DataMask_1001                      1001
 #define Container_Gesamtzaehler            3000
 #define Container_Tageszaehler             3001
+#define Container_3002                     3002
+#define Container_Ziel_erreicht            3003
 #define SoftKeyMask_Home                   4000
 #define SoftKey_PlusPlus                   5000
 #define SoftKey_Reset_Gesamtzaehler        5001
@@ -21,7 +23,9 @@
 #define Button_Reset_Gesamtzaehler         6001
 #define Button_Reset_Tageszaehler          6002
 #define Button_Minus                       6003
+#define InputString_8000                   8000
 #define InputNumber_Tagesziel              9000
+#define InputNumber_Gesamtziel             9001
 #define OutputString_PlusPlus             11000
 #define OutputString_Fasszaehler          11001
 #define OutputString_Reset_Gesamtzaehler  11002
@@ -32,6 +36,7 @@
 #define OutputString_11007                11007
 #define OutputNumber_Tageszaehler         12000
 #define OutputNumber_Gesamtzaehler        12003
+#define Rectangle_14000                   14000
 #define Meter_Gesamtzaehler               17000
 #define Meter_Tageszaehler                17001
 #define LinearBargraph_Gesamtzaehler      18000
@@ -39,9 +44,13 @@
 #define NumberVariable_Tageszaehler       21000
 #define NumberVariable_Gesamtzaehler      21001
 #define NumberVariable_Tagesziel          21002
+#define NumberVariable_Gesamtziel         21003
 #define FontAttributes_23000              23000
 #define FontAttributes_Default            23001
 #define FontAttributes_Button             23002
+#define FontAttributes_23003              23003
+#define LineAttributes_24000              24000
+#define FillAttributes_25000              25000
 #define ObjectPointer_Null2               27000
 #define ObjectPointer_Null3               27001
 #define AuxFunction2_PlusPlus             29000

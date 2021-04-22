@@ -95,6 +95,8 @@ void VTC_setPoolManipulation(iso_u8 u8Instance)
 iso_u32 Tageszaehler = 0;
 iso_u32 Gesamtzaehler = 0;
 iso_u32 Tagesziel = 0;
+iso_u32 Gesamtziel = 0;
+
 
 
 void VTC_handleSoftkeysAndButtons_RELEASED(const struct ButtonActivation_S *pButtonData) {
@@ -130,6 +132,13 @@ void VTC_handleSoftkeysAndButtons_RELEASED(const struct ButtonActivation_S *pBut
 	default:
 		break;
 	}
+
+	if (Tageszaehler >= Tagesziel)
+		IsoVtcCmd_ObjHideShow(pButtonData->u8Instance, Container_Ziel_erreicht, true);
+	else
+		IsoVtcCmd_ObjHideShow(pButtonData->u8Instance, Container_Ziel_erreicht, false);
+
+
 	// Senden des Wertes der lokalen Variable Tageszaehler an die NumberVariable_Tageszaehler
 	IsoVtcCmd_NumericValue(pButtonData->u8Instance, NumberVariable_Tageszaehler, Tageszaehler);
 	// Senden des Wertes der lokalen Variable Gesamtzaehler an die NumberVariable_Gesamtzaehler
@@ -151,6 +160,13 @@ void VTC_handleNumericValues(const struct InputNumber_S * pInputNumberData) {
 		ESP_LOGI(TAG, "you typed Gesamtzaehler: %i", pInputNumberData->newValue); //der eingegebene Wert findet sich in pInputNumberData->newValue
 		Gesamtzaehler = pInputNumberData->newValue;
 		break;
+
+	case NumberVariable_Gesamtziel:
+	ESP_LOGI(TAG, "you typed Gesamtziel: %i", pInputNumberData->newValue);
+	Gesamtziel = pInputNumberData->newValue;
+	setU32("CF-A", "Gesamtziel", Gesamtziel);
+	break;
+
 
 
 	case NumberVariable_Tagesziel:
@@ -186,6 +202,7 @@ void VTC_setPoolReady(iso_u8 u8Instance)
 	// STANDARD-Wert = 0; wenn nichts abgespeichert.
 	Gesamtzaehler = getU32("CF-A", "Gesamtzaehler", 0);
 	Tagesziel = getU32("CF-A", "Tagesziel", 0);
+	Gesamtziel = getU32("CF-A", "Gesamtziel", 0);
 
 
 	// Senden des Wertes der lokalen Variable Tageszaehler an die NumberVariable_Tageszaehler
@@ -193,6 +210,7 @@ void VTC_setPoolReady(iso_u8 u8Instance)
 	// Senden des Wertes der lokalen Variable Gesamtzaehler an die NumberVariable_Gesamtzaehler
 	IsoVtcCmd_NumericValue(u8Instance, NumberVariable_Gesamtzaehler, Gesamtzaehler);
 	IsoVtcCmd_NumericValue(u8Instance, NumberVariable_Tagesziel, Tagesziel);
+	IsoVtcCmd_NumericValue(u8Instance, NumberVariable_Gesamtziel, Gesamtziel);
 }
 
 
